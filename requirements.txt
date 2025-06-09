@@ -1,0 +1,16 @@
+deepface
+mss
+numpy
+opencv_python
+pandas
+Pillow
+playsound
+protobuf
+PyAudio
+python-dotenv
+torch
+ultralytics
+google-genai
+googleapis-common-protos
+tf-keras
+PySide6
