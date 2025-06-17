@@ -1,0 +1,57 @@
+﻿# config/settings.yml
+
+# Nome do usuário para uma experiência personalizada.
+# Será usado no prompt para o LLM.
+user:
+  name: "Aether"
+
+# Configurações do provedor de LLM.
+# A chave 'provider' decide qual serviço será carregado pela factory.
+llm:
+  provider: "gemini"  # Opções: "gemini", "openai"
+  system_prompt_path: "config/prompts.yml" # Caminho para os prompts.
+
+  gemini:
+    # A chave será lida da variável de ambiente chamada GEMINI_API_KEY.
+    # Certifique-se de definir esta variável no seu sistema ou em um arquivo .env.
+    api_key: "${GEMINI_API_KEY}" 
+    model: "models/gemini-1.5-flash-latest"
+    temperature: 0.2
+
+  openai:
+    # A chave será lida da variável de ambiente OPENAI_API_KEY.
+    api_key: "${OPENAI_API_KEY}"
+    model: "gpt-4o"
+    temperature: 0.7
+
+# Configurações de hardware de vídeo.
+video:
+  provider: "opencv"
+  device_index: 0  # 0 para a webcam padrão. Mude se tiver múltiplas câmeras.
+  fps: 2.0         # Frames por segundo para processamento. Valores mais altos consomem mais CPU.
+  jpeg_quality: 60 # Qualidade da imagem enviada para o LLM (1-100).
+
+# Configurações de hardware de áudio.
+audio:
+  chunk_size: 1024
+  send_sample_rate: 16000  # Taxa de amostragem para o áudio enviado ao LLM.
+  receive_sample_rate: 24000 # Taxa de amostragem do áudio recebido do LLM.
+  channels: 1
+
+# Configurações dos modelos de visão computacional.
+vision:
+  yolo_model_path: "data/models/yolov8n.pt"
+  confidence_threshold: 0.45 # Limiar de confiança para detecções do YOLO.
+  
+  midas_model_type: "DPT_SwinV2_L_384" # Modelo MiDaS para estimativa de profundidade.
+
+  deepface_db_path: "data/user_data/known_faces" # Onde os rostos salvos ficarão.
+  deepface_model_name: "VGG-Face"
+  deepface_detector_backend: "opencv"
+  deepface_distance_metric: "cosine"
+
+# Caminhos gerais para recursos da aplicação.
+paths:
+  data: "data" # Pasta raiz para dados.
+  tool_definitions: "config/tool_definitions.json" # Definições das ferramentas.
+  danger_sound: "data/assets/sounds/trackie_danger.wav" # Som de alerta.

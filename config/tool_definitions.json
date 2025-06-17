@@ -1,0 +1,38 @@
+﻿[
+  {
+    "name": "save_known_face",
+    "description": "Salva o rosto da pessoa atualmente em foco pela câmera. Esta função requer o nome da pessoa. Se 'person_name' não for fornecido na chamada inicial, a IA deve solicitar explicitamente ao usuário: 'Por favor, informe o nome da pessoa para salvar o rosto.' Após receber o nome, a função tenta salvar o rosto e confirma o sucesso ou a falha.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "person_name": {
+          "type": "STRING",
+          "description": "O nome da pessoa cujo rosto será salvo. Este nome é necessário para o salvamento."
+        }
+      },
+      "required": [ "person_name" ]
+    }
+  },
+  {
+    "name": "identify_person_in_front",
+    "description": "Identifica a pessoa atualmente em foco pela câmera usando o banco de dados de rostos conhecidos. Deve ser chamada apenas quando o usuário expressa explicitamente a intenção de identificar alguém. Se múltiplos rostos forem detectados, a função prioriza o rosto mais proeminente. Retorna o nome da pessoa ou uma mensagem indicando que não foi reconhecida.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {}
+    }
+  },
+  {
+    "name": "locate_object_and_estimate_distance",
+    "description": "Localiza um objeto especificado pelo usuário no campo de visão da câmera, estima a distância até ele em passos e informa sua direção relativa (ex: 'à sua esquerda', 'em frente'). Esta função é projetada para auxiliar usuários com deficiência visual. Se o nome do objeto ('object_name') não for fornecido, a IA deve perguntar: 'Qual objeto você gostaria de localizar?'.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "object_name": {
+          "type": "STRING",
+          "description": "O nome do objeto que o usuário deseja localizar e cuja distância deve ser estimada (ex: 'cadeira', 'mesa', 'celular')."
+        }
+      },
+      "required": [ "object_name" ]
+    }
+  }
+]
